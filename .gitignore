@@ -1,0 +1,48 @@
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.env               # ← NEVER commit this — contains passwords!
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# HuggingFace model cache (large files)
+~/.cache/huggingface/
+
+# === NODE / REACT ===
+node_modules/
+dist/
+.vite/
+*.local
+
+# === DATABASE ===
+*.db
+*.sqlite
+*.sqlite3
+
+# === IDE ===
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# === DATA (raw data may be large or sensitive) ===
+data/raw/*.csv
+data/raw/*.pdf
+data/processed/*.csv
+
+# Keep the folder structure but not the files
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# === LOGS ===
+*.log
+logs/

@@ -1,0 +1,162 @@
+/* frontend/src/styles/global.css
+ * Brand palette:
+ *   Jet Stream  #BDD9BF
+ *   Charcoal    #2E4052
+ *   Mustard     #FFC857
+ *   White       #FFFFFF
+ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ================================================================
+   DESIGN TOKENS
+   ================================================================ */
+:root {
+  /* Brand colors */
+  --charcoal:        #2E4052;
+  --charcoal-light:  #3d5268;
+  --charcoal-dark:   #1e2c38;
+  --jet-stream:      #BDD9BF;
+  --jet-stream-dark: #8fb893;
+  --mustard:         #FFC857;
+  --mustard-dark:    #e6ad3a;
+  --white:           #FFFFFF;
+  --off-white:       #F8FAF8;
+
+  /* App surfaces */
+  --color-bg:         #F5F7F5;
+  --color-surface:    #FFFFFF;
+  --color-surface-2:  #EFF4EF;
+  --color-border:     #D8E8D9;
+  --color-border-2:   #BDD9BF;
+
+  /* Party colors */
+  --color-dmk:         #C0392B;
+  --color-dmk-soft:    rgba(192,57,43,0.08);
+  --color-aiadmk:      #2471A3;
+  --color-aiadmk-soft: rgba(36,113,163,0.08);
+
+  /* Accent = Mustard */
+  --color-accent:      #FFC857;
+  --color-accent-dark: #e6ad3a;
+  --color-accent-soft: rgba(255,200,87,0.15);
+
+  /* Sentiment */
+  --color-positive:    #1e8449;
+  --color-positive-bg: rgba(30,132,73,0.08);
+  --color-neutral:     #b7770d;
+  --color-neutral-bg:  rgba(183,119,13,0.08);
+  --color-negative:    #c0392b;
+  --color-negative-bg: rgba(192,57,43,0.08);
+
+  /* Text */
+  --color-text-primary:   #2E4052;
+  --color-text-secondary: #5a7080;
+  --color-text-muted:     #8fa3b0;
+
+  /* Typography */
+  --font-display: 'Sora', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-xl:24px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(46,64,82,0.08);
+  --shadow-hover:0 6px 24px rgba(46,64,82,0.14);
+
+  --transition: 0.2s ease;
+}
+
+/* ================================================================
+   BASE
+   ================================================================ */
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+a { color: var(--charcoal); text-decoration: none; }
+
+button { cursor: pointer; font-family: var(--font-body); }
+
+/* ================================================================
+   CARD
+   ================================================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--jet-stream);
+}
+
+/* ================================================================
+   PAGE HEADER ACCENT
+   ================================================================ */
+.page-header-accent {
+  display: inline-block;
+  width: 44px; height: 4px;
+  background: var(--mustard);
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+/* ================================================================
+   BADGES
+   ================================================================ */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+}
+.badge-dmk    { background: var(--color-dmk-soft);    color: var(--color-dmk); }
+.badge-aiadmk { background: var(--color-aiadmk-soft); color: var(--color-aiadmk); }
+.badge-positive { background: var(--color-positive-bg); color: var(--color-positive); }
+.badge-neutral  { background: var(--color-neutral-bg);  color: var(--color-neutral); }
+.badge-negative { background: var(--color-negative-bg); color: var(--color-negative); }
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--jet-stream); border-radius: 3px; }
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--mustard);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.fade-in { animation: fadeInUp 0.4s ease forwards; }

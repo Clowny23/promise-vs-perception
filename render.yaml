@@ -1,0 +1,41 @@
+# render.yaml
+# Deployment configuration for Render.com (backend hosting)
+#
+# WHY RENDER:
+# - Free tier available for hobby projects
+# - Deploys directly from GitHub
+# - Auto-restarts if the server crashes
+# - Provides PostgreSQL as a managed service
+#
+# HOW TO DEPLOY:
+# 1. Push your code to GitHub
+# 2. Go to render.com → New → Web Service
+# 3. Connect your GitHub repository
+# 4. Render reads this file automatically
+#
+# Or use the Render dashboard UI to set these manually.
+
+services:
+  # --- Backend Web Service ---
+  - type: web
+    name: promise-vs-perception-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python -m spacy download en_core_web_sm
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: promise-perception-db
+          property: connectionString
+      - key: APP_ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: https://your-app.vercel.app  # Replace with your Vercel URL
+
+  # --- PostgreSQL Database ---
+databases:
+  - name: promise-perception-db
+    databaseName: promise_perception
+    user: promise_user
+    plan: free

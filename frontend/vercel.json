@@ -1,0 +1,17 @@
+{
+  "comment": "Vercel deployment config for React frontend",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "comment": "All routes go to index.html — React Router handles them client-side",
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "https://your-backend.onrender.com/api/v1"
+  }
+}
